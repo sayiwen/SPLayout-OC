@@ -1,0 +1,24 @@
+PODS:
+  - Masonry (1.1.0)
+  - SPLayout (0.1.0):
+    - Masonry (~> 1.1.0)
+
+DEPENDENCIES:
+  - Masonry
+  - SPLayout (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - Masonry
+
+EXTERNAL SOURCES:
+  SPLayout:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  SPLayout: 33b4d067ca0b82f75530198c69e156e9925910b8
+
+PODFILE CHECKSUM: 4ba73ef26e7be9e0003eb63fa1def425f879f26c
+
+COCOAPODS: 1.12.0

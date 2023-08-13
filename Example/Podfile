@@ -4,10 +4,5 @@ platform :ios, '10.0'
 
 target 'SPLayout_Example' do
   pod 'SPLayout', :path => '../'
-
-  target 'SPLayout_Tests' do
-    inherit! :search_paths
-
-    
-  end
+  pod 'Masonry'
 end

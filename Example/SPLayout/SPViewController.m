@@ -7,8 +7,19 @@
 //
 
 #import "SPViewController.h"
+#import <Masonry/Masonry.h>
+#import <SPLayout/SPLayout.h>
+
+
 
 @interface SPViewController ()
+
+
+@property (nonatomic, weak) UIView *firstView;
+@property (nonatomic, weak) UIView *secondView;
+
+
+
 
 @end
 
@@ -17,13 +28,42 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    self.view.backgroundColor = UIColor.grayColor;
+    
+    UIView *firstView = [[UIView alloc] init];
+    self.firstView = firstView;
+    firstView.backgroundColor = UIColor.redColor;
+    
+    UIView *secondView = [[UIView alloc] init];
+    self.secondView = secondView;
+    secondView.backgroundColor = UIColor.blueColor;
+
+    
+    [self.view addSubview:firstView];
+    [self.view addSubview:secondView];
+    
+    
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+//layout
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    
+    SPLayout.layout(self.firstView)
+        .rightToRightOfMargin(self.view,20).centerY(self.view).width(100).height(100).install().debug();
+    
+    SPLayout.layout(self.secondView)
+        .leftToLeftOfMargin(self.view,20).centerY(self.view).width(100).height(100).install().debug();
+    
+
+}
+
+
+
+
+//layout
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
 }
 
 @end

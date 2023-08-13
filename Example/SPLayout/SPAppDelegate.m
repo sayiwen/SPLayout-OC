@@ -7,12 +7,14 @@
 //
 
 #import "SPAppDelegate.h"
+#import <SPLayout/SPLayout.h>
 
 @implementation SPAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [SPLayout setRtl:YES];
     return YES;
 }
 
