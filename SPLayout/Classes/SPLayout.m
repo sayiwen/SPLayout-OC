@@ -139,7 +139,7 @@ static BOOL isRTL = NO;
     };
 }
 - (SPLayout *)topToBottomOfReal:(UIView *)view margin:(CGFloat)margin{
-    self.constraintMaker.top.equalTo(view).offset(margin);
+    self.constraintMaker.top.equalTo(view.mas_bottom).offset(margin);
     return self;
 }
 
