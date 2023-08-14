@@ -50,12 +50,18 @@
     [super viewWillLayoutSubviews];
     
     SPLayout.layout(self.firstView)
-        .rightToRightOfMargin(self.view,20).centerY(self.view).width(100).height(100).install().debug();
+        .rtlOnly()
+        .rightToRightOfMargin(self.view,20)
+        .centerY(self.view)
+        .size(CGSizeMake(100, 100))
+        .install();
     
     SPLayout.layout(self.secondView)
-        .leftToLeftOfMargin(self.view,20).centerY(self.view).width(100).height(100).install().debug();
-    
-
+        .leftToLeftOf(self.view)
+        .centerY(self.view)
+        .width(100)
+        .height(100)
+        .install();
 }
 
 

@@ -14,10 +14,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic,strong) MASConstraintMaker *constraintMaker;
 @property (nonatomic,strong) UIView *view;
+@property (nonatomic,assign) BOOL isRtlOnly;
 
 + (void)setRtl:(BOOL)rtl;
 
 + (SPLayout * (^)(UIView *attr))layout;
+
+#pragma mark - rtlOnly
+- (SPLayout * (^)(void))rtlOnly;
 
 #pragma mark - right
 - (SPLayout * (^)(id attr))rightToRightOf;

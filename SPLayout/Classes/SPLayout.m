@@ -22,7 +22,6 @@ static BOOL isRTL = NO;
         view.translatesAutoresizingMaskIntoConstraints = NO;
         self.constraintMaker = [[MASConstraintMaker alloc] initWithView:view];
     }
-    
     return self;
 }
 
@@ -30,12 +29,20 @@ static BOOL isRTL = NO;
     isRTL = rtl;
 }
 
-
 + (SPLayout * (^)(UIView*))layout {
     return ^id(id view) {
         return [[SPLayout alloc] initWithView:view];
     };
 }
+
+#pragma mark - rtlOnly
+- (SPLayout * (^)(void))rtlOnly{
+    return ^id() {
+        self.isRtlOnly = YES;
+        return self;
+    };
+}
+
 
 #pragma mark - right
 - (SPLayout * (^)(id attr,CGFloat margin))rightToRightOfMargin{
@@ -44,7 +51,7 @@ static BOOL isRTL = NO;
     };
 }
 - (SPLayout *)rightToRightOfReal:(UIView *)view margin:(CGFloat)margin{
-    if(isRTL){
+    if(isRTL || self.isRtlOnly){
         self.constraintMaker.right.equalTo(view).offset(margin*-1);
     }else{
         self.constraintMaker.left.equalTo(view).offset(margin);
@@ -67,7 +74,7 @@ static BOOL isRTL = NO;
     };
 }
 - (SPLayout *)rightToLeftOfReal:(UIView *)view margin:(CGFloat)margin{
-    if(isRTL){
+    if(isRTL || self.isRtlOnly){
         self.constraintMaker.right.equalTo(view.mas_left).offset(margin*-1);
     }else{
         self.constraintMaker.left.equalTo(view.mas_right).offset(margin);
@@ -92,7 +99,7 @@ static BOOL isRTL = NO;
     };
 }
 - (SPLayout *)leftToLeftOfReal:(UIView *)view margin:(CGFloat)margin{
-    if(isRTL){
+    if(isRTL || self.isRtlOnly){
         self.constraintMaker.left.equalTo(view).offset(margin);
     }else{
         self.constraintMaker.right.equalTo(view).offset(margin*-1);
@@ -105,7 +112,7 @@ static BOOL isRTL = NO;
     };
 }
 - (SPLayout *)leftToRightOfReal:(UIView *)view margin:(CGFloat)margin{
-    if(isRTL){
+    if(isRTL || self.isRtlOnly){
         self.constraintMaker.left.equalTo(view.mas_right).offset(margin);
     }else{
         self.constraintMaker.right.equalTo(view.mas_left).offset(margin*-1);
@@ -202,7 +209,7 @@ static BOOL isRTL = NO;
 }
 
 - (SPLayout *)centerXReal:(UIView *)view margin:(CGFloat)margin{
-    if(isRTL){
+    if(isRTL || self.isRtlOnly){
         margin = -1 * margin;
     }
     self.constraintMaker.centerX.equalTo(view).offset(margin);
