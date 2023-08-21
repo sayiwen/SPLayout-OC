@@ -45,12 +45,10 @@
     
 }
 
-//layout
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
     
     SPLayout.layout(self.firstView)
-        .rtlOnly()
         .rightToRightOfMargin(self.view,20)
         .centerY(self.view)
         .size(CGSizeMake(100, 100))

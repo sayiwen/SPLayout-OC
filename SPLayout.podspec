@@ -15,10 +15,10 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/sayiwen/SPLayout'
+  s.homepage         = 'https://github.com/sayiwen/SPLayout-OC'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'sayiwen' => 'sayiwen@163.com' }
-  s.source           = { :git => 'https://github.com/sayiwen/SPLayout.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/sayiwen/SPLayout-OC.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '9.0'
   
