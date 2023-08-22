@@ -14,16 +14,24 @@ static BOOL isRTL = NO;
 @implementation SPLayout
 
 
-- (instancetype)initWithView:(UIView *)view;
+- (instancetype)initWithView:(UIView *)view update:(BOOL)update
 {
     self = [super init];
     if (self) {
         self.view = view;
         view.translatesAutoresizingMaskIntoConstraints = NO;
-        self.constraintMaker = [[MASConstraintMaker alloc] initWithView:view];
+        if (update) {
+            self.constraintMaker = [[MASConstraintMaker alloc] initWithView:view];
+            self.constraintMaker.updateExisting = YES;
+            self.constraintMaker.removeExisting = NO;
+        }else{
+            self.constraintMaker.removeExisting = YES;
+            self.constraintMaker = [[MASConstraintMaker alloc] initWithView:view];
+        }
     }
     return self;
 }
+
 
 + (void)setRtl:(BOOL)rtl{
     isRTL = rtl;
@@ -31,7 +39,13 @@ static BOOL isRTL = NO;
 
 + (SPLayout * (^)(UIView*))layout {
     return ^id(id view) {
-        return [[SPLayout alloc] initWithView:view];
+        return [[SPLayout alloc] initWithView:view update:NO];
+    };
+}
+
++ (SPLayout * (^)(UIView*))update {
+    return ^id(id view) {
+        return [[SPLayout alloc] initWithView:view update:YES];
     };
 }
 
@@ -168,7 +182,7 @@ static BOOL isRTL = NO;
     };
 }
 - (SPLayout *)bottomToBottomOfReal:(UIView *)view margin:(CGFloat)margin{
-    self.constraintMaker.bottom.equalTo(view).offset(margin);
+    self.constraintMaker.bottom.equalTo(view).offset(margin * -1);
     return self;
 }
 - (SPLayout * (^)(id attr,CGFloat margin))bottomToTopOfMargin{
@@ -230,7 +244,14 @@ static BOOL isRTL = NO;
     self.constraintMaker.centerY.equalTo(view).offset(margin);
     return self;
 }
-
+- (SPLayout * _Nonnull (^)(void))clearCenter{
+    return ^(void){
+        [self.constraintMaker.center uninstall];
+        [self.constraintMaker.centerX uninstall];
+        [self.constraintMaker.centerY uninstall];
+        return self;
+    };
+}
 #pragma mark - width
 - (SPLayout * (^)(CGFloat width))width{
     return ^id(CGFloat width) {

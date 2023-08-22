@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)setRtl:(BOOL)rtl;
 
 + (SPLayout * (^)(UIView *attr))layout;
++ (SPLayout * (^)(UIView *attr))update;
 
 #pragma mark - rtlOnly
 - (SPLayout * (^)(void))rtlOnly;
@@ -42,6 +43,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (SPLayout * (^)(id attr,CGFloat margin))centerXMargin;
 - (SPLayout * (^)(id attr))centerY;
 - (SPLayout * (^)(id attr,CGFloat margin))centerYMargin;
+//clear center
+- (SPLayout * (^)(void))clearCenter;
 
 #pragma mark - top
 - (SPLayout * (^)(id attr))topToTopOf;
