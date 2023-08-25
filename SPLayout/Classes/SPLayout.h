@@ -69,7 +69,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (SPLayout * (^)(id attr,CGFloat multiplier))heightEqualWithMultiplier;
 
 #pragma mark - size
-- (SPLayout * (^)(CGSize size))size;
+- (SPLayout * (^)(CGFloat size))size;
 - (SPLayout * (^)(id attr))sizeEqual;
 - (SPLayout * (^)(id attr,CGFloat multiplier))sizeEqualWithMultiplier;
 

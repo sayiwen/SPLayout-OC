@@ -293,9 +293,9 @@ static BOOL isRTL = NO;
 }
 
 #pragma mark - size
-- (SPLayout * (^)(CGSize size))size{
-    return ^id(CGSize size) {
-        self.constraintMaker.size.equalTo([NSValue valueWithCGSize:size]);
+- (SPLayout * (^)(CGFloat size))size{
+    return ^id(CGFloat size) {
+        self.constraintMaker.size.equalTo([NSValue valueWithCGSize:CGSizeMake(size, size)]);
         return self;
     };
 }
