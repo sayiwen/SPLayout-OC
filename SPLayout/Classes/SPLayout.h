@@ -73,6 +73,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (SPLayout * (^)(id attr))sizeEqual;
 - (SPLayout * (^)(id attr,CGFloat multiplier))sizeEqualWithMultiplier;
 
+#pragma mark - edge
+- (SPLayout * (^)(id attr))edges;
+
 #pragma mark - tools
 - (SPLayout * (^)(void))debug;
 
