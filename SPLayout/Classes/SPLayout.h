@@ -75,6 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - edge
 - (SPLayout * (^)(id attr))edges;
+- (SPLayout * (^)(id attr,UIEdgeInsets inset))edgesWithInset;
 
 #pragma mark - tools
 - (SPLayout * (^)(void))debug;

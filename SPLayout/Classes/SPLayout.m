@@ -315,14 +315,18 @@ static BOOL isRTL = NO;
 #pragma mark - edges
 - (SPLayout * (^)(id attr))edges{
     return ^id(id attribute) {
-        return [self edgesReal:attribute];
+        return [self edgesReal:attribute inset:UIEdgeInsetsMake(0, 0, 0, 0)];
     };
 }
-- (SPLayout *)edgesReal:(UIView *)view{
-    self.constraintMaker.edges.equalTo(view);
+- (SPLayout * (^)(id attr,UIEdgeInsets inset))edgesWithInset{
+    return ^id(id attribute,UIEdgeInsets inset) {
+        return [self edgesReal:attribute inset:inset];
+    };
+}
+- (SPLayout *)edgesReal:(UIView *)view inset:(UIEdgeInsets)inset{
+    self.constraintMaker.edges.equalTo(view).insets(inset);
     return self;
 }
-
 
 #pragma mark - install
 - (SPLayout * (^)(void))install{
